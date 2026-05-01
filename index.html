@@ -1,0 +1,1694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>TIQ Interiors · Digital Growth Dashboard</title>
+<meta name="description" content="TIQ Interiors — Designed for how you live. Digital growth dashboard: brand assets, milestones, content engine and 6-month plan." />
+
+<!-- Premium fonts: Fraunces serif (display) + Inter (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =============================================================
+   TIQ Interiors — Digital Growth Dashboard
+   Theme: warm light cream + olive accents (matches hamper brand)
+   ============================================================= */
+
+/* ---------- TOKENS ---------- */
+:root{
+  --bg-0:#FAF8F2;          /* page warm cream */
+  --bg-1:#FFFFFF;          /* card surface */
+  --bg-2:#F4F1E8;          /* subtle band */
+  --line:rgba(63,72,40,.10);
+  --line-strong:rgba(63,72,40,.18);
+
+  --olive-50:#F4F1E8;
+  --olive-100:#E8E3D2;
+  --olive-200:#CFC8A8;
+  --olive-300:#A9A883;
+  --olive-400:#8A9163;
+  --olive-500:#6B7547;
+  --olive-600:#545E36;
+  --olive-700:#3F4828;     /* primary brand */
+  --olive-800:#2E3520;
+  --olive-900:#1F2418;
+
+  --tan:#C4A878;
+  --tan-soft:#E8DCC0;
+
+  --text-0:#1A1F14;
+  --text-1:#2E3520;
+  --text-2:#5C6447;
+  --text-3:#8A8F7B;
+
+  --radius-xl:22px;
+  --radius-lg:18px;
+  --radius-md:14px;
+  --radius-sm:10px;
+
+  --shadow-soft: 0 1px 2px rgba(63,72,40,.04), 0 8px 24px -12px rgba(63,72,40,.18);
+  --shadow-lift: 0 2px 4px rgba(63,72,40,.05), 0 18px 40px -16px rgba(63,72,40,.22);
+
+  --font-display:"Fraunces","DM Serif Display",Georgia,serif;
+  --font-body:"Inter","DM Sans",system-ui,sans-serif;
+
+  --max:1240px;
+}
+
+/* ---------- BASE ---------- */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg-0);
+  color:var(--text-1);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  line-height:1.55;
+  letter-spacing:-.005em;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+
+/* very subtle paper grain */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(800px 500px at 8% -8%, rgba(107,117,71,.07), transparent 60%),
+    radial-gradient(700px 500px at 96% 6%, rgba(196,168,120,.10), transparent 60%);
+}
+main{position:relative;z-index:1}
+
+/* ---------- TYPE ---------- */
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;letter-spacing:-.012em;color:var(--text-0);margin:0}
+h1{font-size:clamp(2.6rem,5.8vw,4.8rem);line-height:1.02;font-weight:400}
+h2{font-size:clamp(1.7rem,2.8vw,2.4rem);line-height:1.12;font-weight:500}
+h3{font-size:1.18rem;letter-spacing:-.005em;font-weight:500}
+.serif-italic{font-style:italic;color:var(--olive-600)}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:6px 13px;
+  border-radius:999px;
+  background:rgba(107,117,71,.08);
+  border:1px solid rgba(107,117,71,.18);
+  color:var(--olive-700);
+  font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;font-family:var(--font-body);
+}
+.eyebrow .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--olive-500);
+  box-shadow:0 0 0 4px rgba(107,117,71,.18);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse{50%{transform:scale(1.4);opacity:.6}}
+
+.muted{color:var(--text-2)}
+.tiny{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);font-weight:600}
+
+/* ---------- LAYOUT (TIGHTER) ---------- */
+.container{max-width:var(--max);margin:0 auto;padding:0 28px}
+.section{padding:64px 0;position:relative}             /* tightened from 120 */
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:28px;flex-wrap:wrap}
+.section-head .lead{max-width:560px;color:var(--text-2);font-size:1rem}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(160%) blur(14px);
+  -webkit-backdrop-filter:saturate(160%) blur(14px);
+  background:rgba(250,248,242,.78);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:var(--max);margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 28px;
+}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);letter-spacing:.01em}
+.brand-mark{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--olive-600),var(--olive-800));
+  display:grid;place-items:center;
+  color:#fff;font-family:var(--font-display);font-weight:500;font-size:14px;
+  letter-spacing:.04em;
+}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+.nav a{font-size:.9rem;color:var(--text-2);transition:color .2s;font-family:var(--font-body)}
+.nav a:hover{color:var(--olive-700)}
+.cta{
+  padding:9px 18px;border-radius:999px;
+  background:var(--olive-700);
+  color:#fff;font-weight:500;font-size:.85rem;font-family:var(--font-body);
+  border:1px solid var(--olive-800);
+  box-shadow:0 6px 14px -6px rgba(63,72,40,.4);
+  transition:transform .2s ease, background .2s ease;
+}
+.cta:hover{transform:translateY(-1px);background:var(--olive-800)}
+@media(max-width:880px){.nav ul{display:none}}
+
+/* ---------- HERO ---------- */
+.hero{padding:60px 0 50px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
+@media(max-width:980px){.hero-grid{grid-template-columns:1fr;gap:32px}}
+
+.hero h1 .accent{font-style:italic;color:var(--olive-700)}
+.hero p.sub{color:var(--text-2);max-width:560px;font-size:1.05rem;margin:18px 0 24px}
+.tagline-stamp{
+  display:inline-block;
+  font-family:var(--font-body);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--text-3);font-weight:600;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:8px 0;margin-top:6px;
+}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-meta .pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 13px;border-radius:999px;
+  background:#fff;
+  border:1px solid var(--line);
+  font-size:.83rem;color:var(--text-2);
+}
+.hero-meta .pill svg{width:14px;height:14px;color:var(--olive-600)}
+
+/* Hero stat panel */
+.hero-panel{
+  position:relative;
+  border-radius:var(--radius-xl);
+  padding:24px;
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-lift);
+}
+.hero-panel h3{font-family:var(--font-body);font-size:.82rem;color:var(--text-3);font-weight:600;margin-bottom:14px;letter-spacing:.14em;text-transform:uppercase}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{
+  padding:16px;border-radius:var(--radius-md);
+  background:var(--olive-50);
+  border:1px solid var(--line);
+}
+.kpi .label{font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;color:var(--text-3);font-weight:600;font-family:var(--font-body)}
+.kpi .value{font-family:var(--font-display);font-size:1.85rem;color:var(--olive-800);margin-top:4px;line-height:1;font-weight:500}
+.kpi .delta{font-size:.74rem;color:var(--olive-600);margin-top:4px;font-weight:500}
+
+/* tiny sparkline */
+.spark{margin-top:14px}
+.spark svg{width:100%;height:54px}
+
+/* ---------- CARD BASE ---------- */
+.card{
+  position:relative;
+  border-radius:var(--radius-lg);
+  background:#fff;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-soft);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), border-color .25s, box-shadow .35s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:var(--olive-300);
+  box-shadow:var(--shadow-lift);
+}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-delay="1"]{transition-delay:.06s}
+.reveal[data-delay="2"]{transition-delay:.12s}
+.reveal[data-delay="3"]{transition-delay:.18s}
+.reveal[data-delay="4"]{transition-delay:.24s}
+.reveal[data-delay="5"]{transition-delay:.30s}
+
+/* ---------- ACTION ITEMS (DETAILED) ---------- */
+.action-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:980px){.action-groups{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.action-groups{grid-template-columns:1fr}}
+.action-group{padding:24px}
+.action-group .head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.action-group .ico{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:var(--olive-50);
+  border:1px solid var(--line);
+  color:var(--olive-700);flex:0 0 auto;
+}
+.action-group h3{font-size:1.05rem;font-family:var(--font-display);font-weight:600;margin:0}
+.action-group .meta{font-size:.74rem;color:var(--text-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-top:2px}
+.checks{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.checks li{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:var(--text-1)}
+.checks .box{
+  width:18px;height:18px;border-radius:5px;flex:0 0 auto;margin-top:2px;
+  border:1.5px solid var(--olive-300);
+  background:#fff;
+  display:grid;place-items:center;
+  transition:all .2s ease;
+}
+.checks .box svg{width:11px;height:11px;color:#fff;opacity:0;transition:opacity .2s}
+.checks li.done .box{background:var(--olive-600);border-color:var(--olive-600)}
+.checks li.done .box svg{opacity:1}
+.checks li.progress .box{background:var(--tan);border-color:var(--tan);position:relative;overflow:hidden}
+.checks li.progress .box::after{
+  content:"";position:absolute;inset:3px;border-radius:2px;background:#fff;
+  transform-origin:left;animation:fill 2s ease-in-out infinite alternate;
+}
+@keyframes fill{from{transform:scaleX(.2)}to{transform:scaleX(.7)}}
+.checks li.done span{color:var(--text-2);text-decoration:line-through;text-decoration-color:rgba(63,72,40,.3)}
+
+/* ---------- MILESTONES ---------- */
+.milestones{position:relative;padding:24px 0 8px}
+.milestones::before{
+  content:"";
+  position:absolute;left:25px;top:32px;bottom:32px;
+  width:2px;background:linear-gradient(180deg,var(--olive-200),var(--olive-400));
+  border-radius:2px;
+}
+.milestone{
+  display:grid;grid-template-columns:54px 1fr;gap:18px;
+  margin-bottom:18px;position:relative;
+}
+.milestone .marker{
+  width:54px;height:54px;border-radius:50%;
+  background:#fff;border:2px solid var(--olive-300);
+  display:grid;place-items:center;
+  color:var(--olive-700);font-family:var(--font-display);font-weight:600;
+  font-size:.78rem;text-align:center;line-height:1.05;
+  box-shadow:0 4px 12px -4px rgba(63,72,40,.15);
+  z-index:2;flex:0 0 auto;
+}
+.milestone.launch .marker{
+  background:var(--olive-700);color:#fff;border-color:var(--olive-800);
+  box-shadow:0 0 0 6px rgba(107,117,71,.15), 0 4px 16px -4px rgba(63,72,40,.4);
+  transform:scale(1.06);
+}
+.milestone.future .marker{background:#fff;border-style:dashed}
+.milestone-card{
+  padding:22px 26px;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-soft);
+  transition:transform .3s ease, border-color .3s;
+}
+.milestone-card:hover{transform:translateX(4px);border-color:var(--olive-300)}
+.milestone.launch .milestone-card{
+  background:linear-gradient(135deg,var(--olive-50),#fff 60%);
+  border-color:var(--olive-400);
+}
+.milestone-card .top{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.milestone-card h3{font-size:1.18rem;font-family:var(--font-display);font-weight:600;color:var(--olive-800)}
+.milestone .when{font-size:.74rem;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.milestone.launch h3{color:var(--olive-700)}
+.milestone.launch h3 .rocket{margin-right:6px}
+.milestone-card p{color:var(--text-2);font-size:.94rem;margin:0 0 12px}
+.deliverables{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.deliverable{
+  font-size:.78rem;font-weight:500;
+  padding:5px 11px;border-radius:999px;
+  background:var(--olive-50);color:var(--olive-700);
+  border:1px solid var(--line);
+}
+.milestone.launch .deliverable{background:#fff;border-color:var(--olive-300);color:var(--olive-700)}
+
+/* ---------- ASSET GRID (LOGOS / MASCOT) ---------- */
+.asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:980px){.asset-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.asset-grid{grid-template-columns:repeat(2,1fr)}}
+
+.asset{
+  aspect-ratio:1/1;
+  padding:12px;
+  position:relative;overflow:hidden;
+}
+.asset .frame{
+  width:100%;height:100%;
+  border-radius:var(--radius-md);
+  background:var(--olive-50);
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.asset .frame img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.asset:hover .frame img{transform:scale(1.06)}
+.asset .badge{
+  position:absolute;top:18px;left:18px;
+  font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 10px;border-radius:999px;
+  background:#fff;color:var(--olive-700);
+  border:1px solid var(--line-strong);
+  z-index:2;font-family:var(--font-body);
+}
+.asset .badge.progress{color:var(--tan);background:#fff;border-color:rgba(196,168,120,.5)}
+
+.mascot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.mascot-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.mascot-grid{grid-template-columns:1fr}}
+.mascot{aspect-ratio:1/1.05}
+.mascot .frame{background:#fff}
+
+/* ---------- HAMPER SECTION ---------- */
+.hamper-grid{display:grid;grid-template-columns:1.3fr .9fr;gap:24px;align-items:stretch}
+@media(max-width:980px){.hamper-grid{grid-template-columns:1fr}}
+.hamper-card{padding:0;overflow:hidden}
+.hamper-card .image-wrap{
+  position:relative;aspect-ratio:5/4;
+  background:var(--olive-50);
+  display:grid;place-items:center;
+  overflow:hidden;
+}
+.hamper-card .image-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1);
+}
+.hamper-card:hover .image-wrap img{transform:scale(1.03)}
+.hamper-placeholder{
+  text-align:center;color:var(--text-3);padding:40px;font-family:var(--font-body);
+}
+.hamper-placeholder .ph-icon{
+  width:60px;height:60px;border-radius:14px;background:#fff;
+  display:grid;place-items:center;margin:0 auto 14px;
+  border:1px dashed var(--olive-300);color:var(--olive-500);
+}
+.hamper-placeholder code{
+  font-size:.82rem;background:var(--bg-2);padding:3px 8px;border-radius:6px;
+  color:var(--olive-700);
+}
+
+.hamper-info{padding:30px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.hamper-info h3{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--olive-800)}
+.hamper-quote{
+  font-family:var(--font-display);font-style:italic;
+  font-size:1.05rem;color:var(--olive-700);
+  padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.hamper-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hamper-list li{font-size:.88rem;color:var(--text-1);display:flex;align-items:center;gap:8px}
+.hamper-list .dot{width:5px;height:5px;border-radius:50%;background:var(--olive-500);flex:0 0 auto}
+.hamper-values{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.hamper-value{
+  text-align:center;padding:14px 8px;border-radius:var(--radius-md);
+  background:var(--olive-50);border:1px solid var(--line);
+}
+.hamper-value .ico{margin-bottom:6px;color:var(--olive-700)}
+.hamper-value .label{font-size:.72rem;font-weight:600;color:var(--text-1);text-transform:uppercase;letter-spacing:.06em;line-height:1.2}
+
+/* ---------- PLATFORMS ---------- */
+.platforms{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.platforms{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.platforms{grid-template-columns:1fr}}
+.platform{padding:22px;display:flex;gap:14px;align-items:flex-start}
+.platform .pic{
+  width:46px;height:46px;border-radius:11px;
+  display:grid;place-items:center;flex:0 0 auto;
+  background:var(--olive-50);
+  border:1px solid var(--line);
+}
+.platform .pic svg{width:22px;height:22px}
+.platform h3{font-size:1.05rem;margin-bottom:4px;font-weight:600}
+.platform p{color:var(--text-2);font-size:.9rem;margin:0 0 10px}
+.platform .meta{display:flex;gap:8px;flex-wrap:wrap}
+.platform .chip{
+  font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;
+  background:var(--olive-50);color:var(--olive-700);
+  border:1px solid var(--line);font-weight:600;font-family:var(--font-body);
+}
+
+/* ---------- CONTENT STRATEGY ---------- */
+.strategy{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:980px){.strategy{grid-template-columns:1fr}}
+.strategy-card{padding:28px}
+.strategy-card h3{font-family:var(--font-display);font-size:1.32rem;font-weight:600;margin-bottom:6px;color:var(--olive-800)}
+.strategy-card p.lead{color:var(--text-2);margin-bottom:18px}
+.bank-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:10px}
+.bank-cell{
+  aspect-ratio:1/1;border-radius:8px;
+  background:var(--olive-50);
+  border:1px solid var(--line);
+  display:grid;place-items:center;
+  font-family:var(--font-body);font-size:.74rem;color:var(--olive-700);
+  font-weight:600;
+  transition:transform .2s ease, background .2s ease;
+}
+.bank-cell:hover{transform:scale(1.05);background:var(--olive-100)}
+
+.types-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.types-list li{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:var(--radius-md);
+  background:var(--olive-50);
+  border:1px solid var(--line);
+  transition:border-color .25s, transform .25s;
+}
+.types-list li:hover{border-color:var(--olive-400);transform:translateX(3px)}
+.types-list .dot-icon{
+  width:30px;height:30px;border-radius:8px;flex:0 0 auto;
+  display:grid;place-items:center;
+  background:#fff;color:var(--olive-700);
+  border:1px solid var(--line);font-size:14px;
+}
+.types-list .name{font-weight:600;color:var(--text-1);font-size:.92rem}
+.types-list .desc{color:var(--text-3);font-size:.78rem;margin-left:auto;text-align:right}
+
+/* ---------- POSTING SCHEDULE ---------- */
+.schedule-card{padding:24px}
+.schedule-grid{
+  display:grid;grid-template-columns:130px repeat(7,1fr);
+  gap:6px;
+}
+.schedule-grid .day-head{
+  font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  color:var(--text-3);text-align:center;padding:8px 0;
+}
+.schedule-grid .row-label{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;border-radius:var(--radius-md);
+  background:var(--olive-50);border:1px solid var(--line);
+  font-weight:600;color:var(--text-1);font-size:.9rem;
+}
+.schedule-grid .row-label .ico{
+  width:26px;height:26px;border-radius:7px;
+  background:#fff;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--olive-700);flex:0 0 auto;font-size:13px;
+}
+.schedule-grid .cell{
+  border-radius:var(--radius-md);
+  padding:10px 6px;min-height:54px;
+  background:var(--bg-2);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;
+  font-size:.74rem;color:var(--text-2);text-align:center;line-height:1.25;
+  transition:transform .2s;
+}
+.schedule-grid .cell:hover{transform:translateY(-2px)}
+.schedule-grid .cell.r{background:var(--olive-700);border-color:var(--olive-700);color:#fff;font-weight:600}
+.schedule-grid .cell.c{background:var(--tan);border-color:var(--tan);color:#fff;font-weight:600}
+.schedule-grid .cell.s{background:#fff;border-color:var(--olive-300);color:var(--olive-700);font-weight:600}
+.schedule-grid .cell.empty{opacity:.4}
+
+@media(max-width:900px){
+  .schedule-grid{grid-template-columns:1fr;gap:10px}
+  .schedule-grid .day-head{display:none}
+  .schedule-grid .row-label{margin-top:8px}
+  .schedule-grid .cell{display:none}
+  .schedule-grid .cell.r,.schedule-grid .cell.c,.schedule-grid .cell.s{display:flex;min-height:42px}
+}
+
+.legend{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;color:var(--text-2)}
+.legend .sw{width:12px;height:12px;border-radius:4px}
+.legend .r{background:var(--olive-700)}
+.legend .c{background:var(--tan)}
+.legend .s{background:#fff;border:1px solid var(--olive-300)}
+
+/* ---------- WORKFLOW ---------- */
+.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative}
+@media(max-width:1100px){.flow{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.flow{grid-template-columns:1fr}}
+.step{padding:20px;position:relative}
+.step .num{
+  width:32px;height:32px;border-radius:9px;
+  background:var(--olive-700);
+  font-family:var(--font-display);font-weight:600;color:#fff;
+  display:grid;place-items:center;margin-bottom:12px;
+  font-size:.95rem;
+}
+.step h4{font-family:var(--font-display);font-size:.98rem;margin-bottom:4px;color:var(--olive-800);font-weight:600}
+.step p{color:var(--text-2);font-size:.85rem;margin:0}
+
+/* ---------- AD STRATEGY ---------- */
+.ad-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+@media(max-width:980px){.ad-grid{grid-template-columns:1fr}}
+.ad-card{padding:30px}
+.ad-card h3{font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:14px;color:var(--olive-800)}
+.ad-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed var(--line);gap:12px}
+.ad-row:last-child{border-bottom:0}
+.ad-row .k{color:var(--text-3);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.ad-row .v{color:var(--text-1);font-weight:600;font-size:.94rem;text-align:right}
+.lead-meter{padding:30px;text-align:center}
+.lead-meter .big{
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,7vw,5.2rem);font-weight:500;
+  color:var(--olive-700);
+  line-height:1;margin:14px 0 6px;
+}
+.lead-meter .sub{color:var(--text-2);font-size:.92rem}
+.bar-track{
+  margin-top:20px;height:8px;border-radius:999px;
+  background:var(--olive-100);overflow:hidden;
+}
+.bar-fill{
+  height:100%;border-radius:999px;
+  background:linear-gradient(90deg,var(--olive-500),var(--olive-700));
+  width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1);
+}
+
+/* ---------- BUDGET ---------- */
+.budget{padding:32px}
+.budget-row{display:grid;grid-template-columns:200px 1fr 110px;align-items:center;gap:18px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.budget-row:last-child{border-bottom:0}
+.budget-row .name{font-weight:600;color:var(--text-1);font-size:.95rem}
+.budget-row .name small{display:block;color:var(--text-3);font-weight:500;font-size:.76rem;margin-top:2px;letter-spacing:.04em}
+.budget-track{
+  height:12px;border-radius:999px;
+  background:var(--olive-100);
+  overflow:hidden;border:1px solid var(--line);
+  position:relative;
+}
+.budget-fill{
+  height:100%;width:0;border-radius:999px;
+  background:linear-gradient(90deg,var(--olive-600),var(--olive-400));
+  transition:width 1.4s cubic-bezier(.2,.7,.2,1);
+  position:relative;
+}
+.budget-fill::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  animation:shimmer 2.4s linear infinite;
+}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.budget-row .amt{
+  text-align:right;font-family:var(--font-display);font-weight:600;color:var(--olive-800);font-size:1.08rem;
+}
+.budget-total{
+  margin-top:20px;padding:16px 22px;border-radius:var(--radius-md);
+  background:var(--olive-700);
+  display:flex;justify-content:space-between;align-items:center;
+  color:#fff;
+}
+.budget-total .label{color:#E8E3D2;text-transform:uppercase;font-size:.74rem;letter-spacing:.14em;font-weight:700;font-family:var(--font-body)}
+.budget-total .total{font-family:var(--font-display);font-size:1.55rem;color:#fff;font-weight:600}
+
+@media(max-width:680px){
+  .budget-row{grid-template-columns:1fr;gap:8px}
+  .budget-row .amt{text-align:left}
+}
+
+/* ---------- GROWTH CHART ---------- */
+.growth-card{padding:30px}
+.growth-card svg{width:100%;height:auto;display:block}
+.growth-axis text{fill:var(--text-3);font-size:11px;font-family:var(--font-body)}
+
+/* ---------- AUDIENCE ---------- */
+.audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:780px){.audience-grid{grid-template-columns:1fr}}
+.audience{padding:26px}
+.audience .label{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-600);font-weight:700;margin-bottom:10px;font-family:var(--font-body)}
+.audience .value{font-family:var(--font-display);font-size:1.85rem;color:var(--olive-800);font-weight:600;margin-bottom:6px;line-height:1.1}
+.audience p{color:var(--text-2);font-size:.92rem;margin:0}
+
+/* ---------- FOOTER ---------- */
+footer{
+  border-top:1px solid var(--line);
+  padding:50px 0 40px;
+  margin-top:40px;
+  background:var(--bg-2);
+}
+footer .container{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+footer .brand-block .tag{color:var(--text-3);font-size:.86rem;margin-top:8px;letter-spacing:.04em}
+footer .meta{color:var(--text-3);font-size:.82rem;text-align:right}
+footer .meta strong{color:var(--text-1);font-weight:600}
+footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-700);border:1px solid var(--line)}
+
+/* utility */
+.glow-line{
+  height:1px;width:100%;
+  background:linear-gradient(90deg,transparent,var(--olive-300),transparent);
+}
+
+::selection{background:var(--olive-200);color:var(--olive-900)}
+
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-2)}
+::-webkit-scrollbar-thumb{background:var(--olive-300);border-radius:10px;border:2px solid var(--bg-2)}
+::-webkit-scrollbar-thumb:hover{background:var(--olive-500)}
+
+/* logo marquee */
+.logo-marquee{
+  margin-top:24px;
+  display:flex;gap:14px;align-items:center;
+  overflow:hidden;
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
+}
+.logo-marquee .track{
+  display:flex;gap:14px;animation:scroll 32s linear infinite;
+}
+.logo-marquee img{
+  height:50px;width:50px;object-fit:cover;border-radius:9px;
+  border:1px solid var(--line);background:#fff;
+  flex:0 0 auto;
+}
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* launch countdown */
+.countdown{
+  display:inline-flex;gap:8px;align-items:center;
+  padding:8px 14px;border-radius:999px;
+  background:var(--olive-700);color:#fff;
+  font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+}
+.countdown .num{font-family:var(--font-display);font-size:1rem;font-weight:600;background:#fff;color:var(--olive-700);padding:2px 8px;border-radius:99px}
+</style>
+</head>
+
+<body>
+
+<!-- ============== NAV ============== -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-mark">TIQ</div>
+      <div>
+        <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;color:var(--olive-800);letter-spacing:.04em">TIQ</div>
+        <div style="font-size:.68rem;color:var(--text-3);letter-spacing:.24em;text-transform:uppercase;font-weight:500;margin-top:-3px">Interiors</div>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#actions">Action Items</a></li>
+        <li><a href="#milestones">Milestones</a></li>
+        <li><a href="#brand">Brand</a></li>
+        <li><a href="#hamper">Hamper</a></li>
+        <li><a href="#content">Content</a></li>
+        <li><a href="#growth">Growth</a></li>
+      </ul>
+    </nav>
+    <a href="#milestones" class="cta">Launch · May 15 →</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============== HERO ============== -->
+<section class="hero container">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>Q2 2026 · Digital Growth Proposal</span>
+      <h1 class="reveal" data-delay="1" style="margin-top:20px">
+        TIQ <span class="accent">Interiors</span>
+      </h1>
+      <span class="tagline-stamp reveal" data-delay="2">Designed for how you live</span>
+      <p class="sub reveal" data-delay="3">
+        A premium digital growth dashboard for a luxury interiors brand.
+        Brand identity, content engine, paid plan and a 6-month roadmap — leading up to launch on May 15.
+      </p>
+      <div class="hero-meta reveal" data-delay="4">
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 2c2.5 4 2.5 16 0 20M2 12h20"/></svg>
+          Chennai · Premium segment
+        </span>
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+          ₹35,000 / month
+        </span>
+        <span class="pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          6-month horizon
+        </span>
+      </div>
+
+      <div class="logo-marquee reveal" data-delay="4">
+        <div class="track" id="logoTrack"></div>
+      </div>
+    </div>
+
+    <aside class="hero-panel reveal" data-delay="2">
+      <h3>Growth snapshot · Month 6 target</h3>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="label">Monthly Leads</div>
+          <div class="value" data-count="60">0</div>
+          <div class="delta">▲ 4× from baseline</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Reach / mo (K)</div>
+          <div class="value" data-count="180">0</div>
+          <div class="delta">▲ Across channels</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Posts / mo</div>
+          <div class="value" data-count="32">0</div>
+          <div class="delta">▲ Consistent cadence</div>
+        </div>
+        <div class="kpi">
+          <div class="label">CAC target (₹)</div>
+          <div class="value" data-count="450">0</div>
+          <div class="delta">▲ Sub-₹500 lead</div>
+        </div>
+      </div>
+      <div class="spark">
+        <svg viewBox="0 0 320 60" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sparkG" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#6B7547" stop-opacity=".4"/>
+              <stop offset="100%" stop-color="#6B7547" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,48 C40,42 70,40 100,32 S160,20 200,18 S280,8 320,4 L320,60 L0,60 Z" fill="url(#sparkG)"/>
+          <path d="M0,48 C40,42 70,40 100,32 S160,20 200,18 S280,8 320,4" fill="none" stroke="#6B7547" stroke-width="2"/>
+        </svg>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============== ACTION ITEMS (DETAILED LIST) ============== -->
+<section class="section container" id="actions">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>02 · Action items</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Everything we ship before launch</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Six workstreams, thirty action items. Status updates as deliverables ship.
+      Strikethrough items are complete; striped boxes are in motion.
+    </p>
+  </div>
+
+  <div class="action-groups">
+
+    <article class="card action-group reveal" data-delay="1">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg>
+        </div>
+        <div>
+          <h3>Brand Identity</h3>
+          <div class="meta">5 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li class="done"><span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M4 12l5 5L20 6"/></svg></span><span>11 logo concepts created</span></li>
+        <li class="progress"><span class="box"></span><span>Final logo selection (top 3 → 1)</span></li>
+        <li class="progress"><span class="box"></span><span>Tagline finalisation</span></li>
+        <li class="progress"><span class="box"></span><span>Mascot finalisation + pose set</span></li>
+        <li><span class="box"></span><span>Brand guidelines document</span></li>
+      </ul>
+    </article>
+
+    <article class="card action-group reveal" data-delay="2">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h2"/></svg>
+        </div>
+        <div>
+          <h3>Website</h3>
+          <div class="meta">5 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li class="progress"><span class="box"></span><span>Domain + hosting secured</span></li>
+        <li><span class="box"></span><span>Homepage build (hero + services)</span></li>
+        <li><span class="box"></span><span>Project case study template</span></li>
+        <li><span class="box"></span><span>Contact + WhatsApp lead form</span></li>
+        <li><span class="box"></span><span>Google Analytics + Meta Pixel</span></li>
+      </ul>
+    </article>
+
+    <article class="card action-group reveal" data-delay="3">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+        </div>
+        <div>
+          <h3>Social Channels</h3>
+          <div class="meta">6 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li class="progress"><span class="box"></span><span>Instagram business profile</span></li>
+        <li><span class="box"></span><span>YouTube channel + branding</span></li>
+        <li><span class="box"></span><span>LinkedIn company page</span></li>
+        <li><span class="box"></span><span>Google Business Profile + verification</span></li>
+        <li><span class="box"></span><span>WhatsApp Business + catalog</span></li>
+        <li><span class="box"></span><span>Bios, profile pics, highlight covers</span></li>
+      </ul>
+    </article>
+
+    <article class="card action-group reveal" data-delay="1">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+        <div>
+          <h3>Content Production</h3>
+          <div class="meta">5 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li class="progress"><span class="box"></span><span>15–20 piece content bank planned</span></li>
+        <li><span class="box"></span><span>Founder intro video</span></li>
+        <li><span class="box"></span><span>Hamper unboxing reel</span></li>
+        <li><span class="box"></span><span>5 reel scripts written</span></li>
+        <li><span class="box"></span><span>Mascot + spaces photoshoot</span></li>
+      </ul>
+    </article>
+
+    <article class="card action-group reveal" data-delay="2">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18l-2 12H5z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+        </div>
+        <div>
+          <h3>Merchandise (Hamper)</h3>
+          <div class="meta">4 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li class="progress"><span class="box"></span><span>T-shirt production (50 pcs)</span></li>
+        <li class="progress"><span class="box"></span><span>Jute bag printing (50 pcs)</span></li>
+        <li><span class="box"></span><span>Water bottle + keychain branding</span></li>
+        <li><span class="box"></span><span>Hamper box design + assembly</span></li>
+      </ul>
+    </article>
+
+    <article class="card action-group reveal" data-delay="3">
+      <div class="head">
+        <div class="ico">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+        </div>
+        <div>
+          <h3>Marketing Operations</h3>
+          <div class="meta">5 items</div>
+        </div>
+      </div>
+      <ul class="checks">
+        <li><span class="box"></span><span>Meta Business Manager setup</span></li>
+        <li><span class="box"></span><span>Lead form + audiences built</span></li>
+        <li><span class="box"></span><span>CRM for lead management</span></li>
+        <li><span class="box"></span><span>Lead response SOP</span></li>
+        <li><span class="box"></span><span>Monthly review dashboard</span></li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============== MILESTONES ============== -->
+<section class="section container" id="milestones">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>03 · Milestones</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Roadmap to launch &amp; beyond</h2>
+    </div>
+    <div class="reveal" data-delay="2" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+      <span class="countdown">Launch Day <span class="num" id="cdNum">14</span> days</span>
+      <p class="lead" style="margin:0">
+        Today: <strong>May 1</strong>. Launch: <strong>May 15</strong>.
+        Six clear phases — kept lean and realistic.
+      </p>
+    </div>
+  </div>
+
+  <div class="milestones">
+
+    <div class="milestone reveal" data-delay="1">
+      <div class="marker">M1<br><small style="font-size:.62rem;letter-spacing:.05em">Now</small></div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3>Foundation Week</h3>
+          <span class="when">May 1 – May 7</span>
+        </div>
+        <p>Lock the brand. Secure infrastructure. No public-facing posts yet.</p>
+        <div class="deliverables">
+          <span class="deliverable">Final logo</span>
+          <span class="deliverable">Brand guidelines</span>
+          <span class="deliverable">Domain + hosting</span>
+          <span class="deliverable">Channel handles claimed</span>
+          <span class="deliverable">Bio copy ready</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone reveal" data-delay="2">
+      <div class="marker">M2</div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3>Build Week</h3>
+          <span class="when">May 8 – May 14</span>
+        </div>
+        <p>Production sprint — everything that needs to exist on launch day gets made now.</p>
+        <div class="deliverables">
+          <span class="deliverable">Website live (1-pager)</span>
+          <span class="deliverable">Mascot finalised</span>
+          <span class="deliverable">Hamper produced</span>
+          <span class="deliverable">10 launch reels shot &amp; edited</span>
+          <span class="deliverable">Founder intro filmed</span>
+          <span class="deliverable">Meta Ads Manager configured</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone launch reveal" data-delay="3">
+      <div class="marker">🚀<br><small style="font-size:.62rem;letter-spacing:.05em">May 15</small></div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3><span class="rocket">🚀</span>Launch Day</h3>
+          <span class="when">Thursday · May 15</span>
+        </div>
+        <p>Synchronised brand reveal across every channel. One day, one story, one feeling.</p>
+        <div class="deliverables">
+          <span class="deliverable">Brand reveal post (all channels)</span>
+          <span class="deliverable">Website goes public</span>
+          <span class="deliverable">Hamper unboxing reel</span>
+          <span class="deliverable">Founder welcome video</span>
+          <span class="deliverable">Story sequence: behind-the-scenes</span>
+          <span class="deliverable">First WhatsApp broadcast</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone reveal" data-delay="4">
+      <div class="marker">M4</div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3>Momentum Phase</h3>
+          <span class="when">May 16 – May 31</span>
+        </div>
+        <p>Daily presence. First paid campaign. Get real data into the funnel.</p>
+        <div class="deliverables">
+          <span class="deliverable">Daily posting cadence active</span>
+          <span class="deliverable">First Meta lead campaign live</span>
+          <span class="deliverable">GBP optimised + 5 reviews</span>
+          <span class="deliverable">WhatsApp catalog populated</span>
+          <span class="deliverable">Lead response SOP in operation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone future reveal" data-delay="5">
+      <div class="marker">M5</div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3>Optimise Phase</h3>
+          <span class="when">June</span>
+        </div>
+        <p>Two weeks of creative-data tells us what to double down on. First leads land.</p>
+        <div class="deliverables">
+          <span class="deliverable">Creative review &amp; iteration</span>
+          <span class="deliverable">Top reels re-cut as ads</span>
+          <span class="deliverable">Builder / architect outreach</span>
+          <span class="deliverable">First 30-lead milestone</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone future reveal" data-delay="5">
+      <div class="marker">M6</div>
+      <div class="milestone-card">
+        <div class="top">
+          <h3>Scale Phase</h3>
+          <span class="when">July onwards</span>
+        </div>
+        <p>Compound. Open new content surfaces. Build a referral engine.</p>
+        <div class="deliverables">
+          <span class="deliverable">YouTube long-form launches</span>
+          <span class="deliverable">Project case studies live</span>
+          <span class="deliverable">Referral hamper program</span>
+          <span class="deliverable">Second ad budget tier</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== LOGO OPTIONS ============== -->
+<section class="section container" id="brand">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>04 · Identity</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Logo concepts</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Eleven directions across monogram, emblem and wordmark routes.
+      Hover to inspect — final selection narrows to three for review.
+    </p>
+  </div>
+
+  <div class="asset-grid" id="logoGrid"></div>
+</section>
+
+<!-- ============== MASCOT ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>05 · Character</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Mascot directions</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A mascot gives TIQ a recurring storyteller — perfect for reels, hoardings and merch.
+      Six personality routes are in active design.
+    </p>
+  </div>
+
+  <div class="mascot-grid" id="mascotGrid"></div>
+</section>
+
+<!-- ============== HAMPER ============== -->
+<section class="section container" id="hamper">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>06 · Merch</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">The TIQ welcome hamper</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A premium gifting set that turns first-time clients into ambassadors —
+      mascot toy, jute bag, water bottle, t-shirt, notebook and keychain.
+    </p>
+  </div>
+
+  <div class="hamper-grid">
+    <article class="card hamper-card reveal" data-delay="1">
+      <div class="image-wrap">
+        <img src="merch/hamper.jpg" alt="TIQ Interiors welcome hamper — t-shirt, mascot toy, water bottle, jute bag, notebook, keychain" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.querySelector('.hamper-placeholder').style.display='block'">
+        <div class="hamper-placeholder" style="display:none">
+          <div class="ph-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h18l-2 12H5z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg>
+          </div>
+          <p style="margin:0 0 8px;font-weight:600;color:var(--text-1)">Hamper image goes here</p>
+          <p style="margin:0;font-size:.86rem">Save the attached hamper image as<br><code>merch/hamper.jpg</code></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card hamper-info reveal" data-delay="2">
+      <div>
+        <h3>Built with logic.<br><span class="serif-italic">Designed with feeling.</span></h3>
+        <p class="hamper-quote">"Every space starts with a thought."</p>
+
+        <ul class="hamper-list">
+          <li><span class="dot"></span>Key chain</li>
+          <li><span class="dot"></span>Mascot toy</li>
+          <li><span class="dot"></span>Water bottle</li>
+          <li><span class="dot"></span>Jute bag</li>
+          <li><span class="dot"></span>Premium t-shirt</li>
+          <li><span class="dot"></span>Notebook + ruler</li>
+        </ul>
+      </div>
+
+      <div class="hamper-values">
+        <div class="hamper-value">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.6 7.1 17.2 8 11.7 4 7.8 9.5 7z"/></svg></div>
+          <div class="label">Premium<br>Quality</div>
+        </div>
+        <div class="hamper-value">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 13c1 1 1.5 2 1.5 3h5c0-1 .5-2 1.5-3a7 7 0 0 0-4-13z"/></svg></div>
+          <div class="label">Thoughtful<br>Design</div>
+        </div>
+        <div class="hamper-value">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 6V4M17 6V4"/></svg></div>
+          <div class="label">Useful<br>Everyday</div>
+        </div>
+        <div class="hamper-value">
+          <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+          <div class="label">Made to<br>Inspire</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== DIGITAL PLATFORMS ============== -->
+<section class="section container" id="platforms">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>07 · Distribution</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Digital platform setup</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Six channels working as one funnel — discovery → trust → enquiry.
+      Each channel has a defined role and posting cadence.
+    </p>
+  </div>
+
+  <div class="platforms">
+    <article class="card platform reveal" data-delay="1">
+      <div class="pic" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);border:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+      </div>
+      <div>
+        <h3>Instagram</h3>
+        <p>Primary hub for visual storytelling, reels and client transformations.</p>
+        <div class="meta"><span class="chip">Reels-first</span><span class="chip">Daily stories</span></div>
+      </div>
+    </article>
+
+    <article class="card platform reveal" data-delay="2">
+      <div class="pic" style="background:#ff0000;border:0">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M21.6 7.2c-.2-1.5-.9-2.6-2.4-2.8C16.6 4 12 4 12 4s-4.6 0-7.2.4c-1.5.2-2.2 1.3-2.4 2.8C2 9.6 2 12 2 12s0 2.4.4 4.8c.2 1.5.9 2.6 2.4 2.8 2.6.4 7.2.4 7.2.4s4.6 0 7.2-.4c1.5-.2 2.2-1.3 2.4-2.8.4-2.4.4-4.8.4-4.8s0-2.4-.4-4.8zM10 15.5v-7l6 3.5z"/></svg>
+      </div>
+      <div>
+        <h3>YouTube</h3>
+        <p>Long-form authority — site walkthroughs, founder podcasts, before/after.</p>
+        <div class="meta"><span class="chip">1 long / week</span><span class="chip">2-3 shorts</span></div>
+      </div>
+    </article>
+
+    <article class="card platform reveal" data-delay="3">
+      <div class="pic" style="background:#0a66c2;border:0">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56V23H.22V8zm7.78 0h4.37v2.05h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 6.99V23h-4.55v-6.5c0-1.55-.03-3.55-2.16-3.55-2.17 0-2.5 1.69-2.5 3.44V23H8v-15z"/></svg>
+      </div>
+      <div>
+        <h3>LinkedIn</h3>
+        <p>Founder-led storytelling, B2B builder relationships, thought leadership.</p>
+        <div class="meta"><span class="chip">2-3 / week</span><span class="chip">Founder voice</span></div>
+      </div>
+    </article>
+
+    <article class="card platform reveal" data-delay="1">
+      <div class="pic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--olive-700)"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><circle cx="7" cy="6.5" r=".7" fill="currentColor"/><circle cx="9.5" cy="6.5" r=".7" fill="currentColor"/></svg>
+      </div>
+      <div>
+        <h3>Website</h3>
+        <p>The trust anchor — portfolio, case studies, enquiry form, brand story.</p>
+        <div class="meta"><span class="chip">Portfolio-led</span><span class="chip">SEO ready</span></div>
+      </div>
+    </article>
+
+    <article class="card platform reveal" data-delay="2">
+      <div class="pic" style="background:#4285f4;border:0">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+      </div>
+      <div>
+        <h3>Google Business</h3>
+        <p>Local discovery — reviews, photos, posts. Critical for "near me" searches.</p>
+        <div class="meta"><span class="chip">Reviews engine</span><span class="chip">Local SEO</span></div>
+      </div>
+    </article>
+
+    <article class="card platform reveal" data-delay="3">
+      <div class="pic" style="background:#25D366;border:0">
+        <svg viewBox="0 0 24 24" fill="#fff"><path d="M20 4A11 11 0 0 0 3 18l-1 5 5-1A11 11 0 1 0 20 4zM12 21a9 9 0 0 1-4.6-1.3l-.3-.2-3 .8.8-3-.2-.3A9 9 0 1 1 12 21zm5-6.6c-.3-.2-1.6-.8-1.9-.9s-.4 0-.6.2-.7.9-.8 1-.3.2-.6 0a7 7 0 0 1-3.5-3.1c-.3-.5.3-.4.7-1.4.1-.2 0-.3 0-.5l-.9-2.2c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5 0-.8.4a3 3 0 0 0-1 2.4c0 1.4 1 2.8 1.2 3a11 11 0 0 0 4.5 4c.6.2 1 .4 1.4.5.6.2 1.1.2 1.6 0 .5-.1 1.5-.6 1.8-1.3s.2-1.1.2-1.3-.3-.2-.6-.4z"/></svg>
+      </div>
+      <div>
+        <h3>WhatsApp Business</h3>
+        <p>Direct enquiry channel — auto-replies, catalog, broadcast updates.</p>
+        <div class="meta"><span class="chip">Lead capture</span><span class="chip">Catalog</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============== CONTENT STRATEGY ============== -->
+<section class="section container" id="content">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>08 · Content engine</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Content strategy</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A pre-built content bank rotated weekly. No last-minute scrambling — just consistent,
+      compounding output across every channel.
+    </p>
+  </div>
+
+  <div class="strategy">
+    <div class="card strategy-card reveal" data-delay="1">
+      <h3>📦 The Content Bank</h3>
+      <p class="lead">Pre-plan 15–20 pieces, store, rotate weekly. Consistency without burnout.</p>
+      <div class="bank-grid" id="bankGrid"></div>
+      <p class="muted" style="margin-top:14px;font-size:.84rem">
+        20 evergreen pieces in inventory · refreshed monthly · drip-fed across channels
+      </p>
+    </div>
+
+    <div class="card strategy-card reveal" data-delay="2">
+      <h3>🎥 Content types</h3>
+      <p class="lead">Six formats covering education, proof, story and entertainment.</p>
+      <ul class="types-list">
+        <li><span class="dot-icon">🎙</span><span class="name">Founder talking videos</span><span class="desc">Authority · trust</span></li>
+        <li><span class="dot-icon">🏗</span><span class="name">Site execution walkthroughs</span><span class="desc">Process · craft</span></li>
+        <li><span class="dot-icon">✨</span><span class="name">Before / After transformations</span><span class="desc">Proof · wow</span></li>
+        <li><span class="dot-icon">🎧</span><span class="name">Podcast-style discussions</span><span class="desc">Depth · POV</span></li>
+        <li><span class="dot-icon">📱</span><span class="name">Reels (educational + relatable)</span><span class="desc">Reach · virality</span></li>
+        <li><span class="dot-icon">💬</span><span class="name">Client storytelling</span><span class="desc">Testimonial · trust</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============== POSTING SCHEDULE ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>09 · Cadence</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Weekly posting schedule</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A predictable weekly rhythm engineered for compounding reach. Stories run daily.
+    </p>
+  </div>
+
+  <div class="card schedule-card reveal">
+    <div class="schedule-grid">
+      <div></div>
+      <div class="day-head">Mon</div><div class="day-head">Tue</div><div class="day-head">Wed</div>
+      <div class="day-head">Thu</div><div class="day-head">Fri</div><div class="day-head">Sat</div><div class="day-head">Sun</div>
+
+      <div class="row-label"><span class="ico">📷</span>Instagram</div>
+      <div class="cell r">Reel</div>
+      <div class="cell c">Carousel</div>
+      <div class="cell r">Reel</div>
+      <div class="cell s">Story Set</div>
+      <div class="cell r">Reel</div>
+      <div class="cell empty">—</div>
+      <div class="cell c">Carousel</div>
+
+      <div class="row-label"><span class="ico">▶️</span>YouTube</div>
+      <div class="cell empty">—</div>
+      <div class="cell s">Short</div>
+      <div class="cell empty">—</div>
+      <div class="cell s">Short</div>
+      <div class="cell r">Long-form</div>
+      <div class="cell empty">—</div>
+      <div class="cell s">Short</div>
+
+      <div class="row-label"><span class="ico">💼</span>LinkedIn</div>
+      <div class="cell s">Post</div>
+      <div class="cell empty">—</div>
+      <div class="cell s">Post</div>
+      <div class="cell empty">—</div>
+      <div class="cell s">Founder</div>
+      <div class="cell empty">—</div>
+      <div class="cell empty">—</div>
+
+      <div class="row-label"><span class="ico">📖</span>Stories</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+      <div class="cell s">Daily</div>
+    </div>
+
+    <div class="legend">
+      <span><span class="sw r"></span>Reel / Long-form</span>
+      <span><span class="sw c"></span>Carousel</span>
+      <span><span class="sw s"></span>Story / Short / Post</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== WORKFLOW ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>10 · Workflow</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Content workflow system</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A repeatable monthly loop. Plan → batch → edit → schedule → measure → optimise.
+    </p>
+  </div>
+
+  <div class="flow">
+    <article class="card step reveal" data-delay="1">
+      <div class="num">1</div>
+      <h4>Build content bank</h4>
+      <p>Plan 15–20 video ideas tied to brand pillars and audience pain points.</p>
+    </article>
+    <article class="card step reveal" data-delay="2">
+      <div class="num">2</div>
+      <h4>Shoot in batches</h4>
+      <p>1–2 days a month. Outfits, locations and props prepped in advance.</p>
+    </article>
+    <article class="card step reveal" data-delay="3">
+      <div class="num">3</div>
+      <h4>Edit weekly</h4>
+      <p>One editor delivers 6–8 polished cuts a week with brand-consistent treatment.</p>
+    </article>
+    <article class="card step reveal" data-delay="4">
+      <div class="num">4</div>
+      <h4>Schedule ahead</h4>
+      <p>Posts queued 2 weeks in advance — no last-minute publishing pressure.</p>
+    </article>
+    <article class="card step reveal" data-delay="5">
+      <div class="num">5</div>
+      <h4>Track performance</h4>
+      <p>Weekly review of reach, saves, watch-time and lead source attribution.</p>
+    </article>
+    <article class="card step reveal" data-delay="5">
+      <div class="num">6</div>
+      <h4>Optimise monthly</h4>
+      <p>Double down on what works. Kill underperformers. Refresh the bank.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============== AD STRATEGY ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>11 · Paid</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Ad strategy</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Meta Lead Ads tuned for Chennai's premium homeowner segment.
+      Conservative targets, room to scale.
+    </p>
+  </div>
+
+  <div class="ad-grid">
+    <div class="card ad-card reveal" data-delay="1">
+      <h3>Meta Lead Ads · Chennai</h3>
+      <div class="ad-row"><span class="k">Platform</span><span class="v">Meta (Facebook + Instagram)</span></div>
+      <div class="ad-row"><span class="k">Format</span><span class="v">Lead Form + Reel hooks</span></div>
+      <div class="ad-row"><span class="k">Target</span><span class="v">Chennai · 30 km radius</span></div>
+      <div class="ad-row"><span class="k">Audience</span><span class="v">Homeowners · Builders · Premium</span></div>
+      <div class="ad-row"><span class="k">Age band</span><span class="v">28 – 50</span></div>
+      <div class="ad-row"><span class="k">Spend</span><span class="v">₹20,000 / month</span></div>
+      <div class="ad-row"><span class="k">CAC target</span><span class="v">₹400 – ₹650 / lead</span></div>
+    </div>
+
+    <div class="card lead-meter reveal" data-delay="2">
+      <span class="tiny">Expected Leads · per month</span>
+      <div class="big">30–60</div>
+      <div class="sub">Realistic, conservative range based on benchmarks</div>
+      <div class="bar-track"><div class="bar-fill" data-fill="78"></div></div>
+      <p class="muted" style="margin-top:14px;font-size:.84rem">
+        Scales linearly with budget once creative-market fit is confirmed (typically Month 2-3).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BUDGET ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>12 · Budget</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Monthly budget breakdown</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Total monthly investment of ₹35,000 — distributed across creative, paid and production.
+    </p>
+  </div>
+
+  <div class="card budget reveal">
+    <div class="budget-row">
+      <div class="name">Editor <small>6–8 polished videos / month</small></div>
+      <div class="budget-track"><div class="budget-fill" data-fill="32.5"></div></div>
+      <div class="amt">₹6,500</div>
+    </div>
+    <div class="budget-row">
+      <div class="name">Meta Ads spend <small>Lead campaigns · Chennai</small></div>
+      <div class="budget-track"><div class="budget-fill" data-fill="100"></div></div>
+      <div class="amt">₹20,000</div>
+    </div>
+    <div class="budget-row">
+      <div class="name">Shoots + Misc <small>Props, travel, retainer buffers</small></div>
+      <div class="budget-track"><div class="budget-fill" data-fill="42.5"></div></div>
+      <div class="amt">₹8,500</div>
+    </div>
+
+    <div class="budget-total">
+      <span class="label">Total monthly investment</span>
+      <span class="total">₹35,000</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== GROWTH PROJECTION ============== -->
+<section class="section container" id="growth">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>13 · Projection</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">6-month growth projection</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Conservative lead curve assuming standard creative-market fit timelines.
+      Months 1–2 are foundation, Month 3 onward compounds.
+    </p>
+  </div>
+
+  <div class="card growth-card reveal">
+    <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" id="growthChart">
+      <defs>
+        <linearGradient id="growthGrad" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#6B7547" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#6B7547" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#A9A883"/>
+          <stop offset="100%" stop-color="#3F4828"/>
+        </linearGradient>
+      </defs>
+      <g class="growth-axis" stroke="rgba(63,72,40,.08)" stroke-dasharray="3 4">
+        <line x1="60" y1="40"  x2="780" y2="40"/>
+        <line x1="60" y1="100" x2="780" y2="100"/>
+        <line x1="60" y1="160" x2="780" y2="160"/>
+        <line x1="60" y1="220" x2="780" y2="220"/>
+        <line x1="60" y1="280" x2="780" y2="280"/>
+      </g>
+      <g class="growth-axis">
+        <text x="50" y="44"  text-anchor="end">80</text>
+        <text x="50" y="104" text-anchor="end">60</text>
+        <text x="50" y="164" text-anchor="end">40</text>
+        <text x="50" y="224" text-anchor="end">20</text>
+        <text x="50" y="284" text-anchor="end">0</text>
+        <text x="120" y="305">M1</text>
+        <text x="240" y="305">M2</text>
+        <text x="360" y="305">M3</text>
+        <text x="480" y="305">M4</text>
+        <text x="600" y="305">M5</text>
+        <text x="720" y="305">M6</text>
+      </g>
+      <path id="areaPath" d="M120,256 C200,242 220,232 240,222 C300,206 340,184 360,166 C420,150 460,128 480,114 C540,98 580,76 600,66 C660,52 700,42 720,40 L720,280 L120,280 Z" fill="url(#growthGrad)" opacity="0"/>
+      <path id="linePath" d="M120,256 C200,242 220,232 240,222 C300,206 340,184 360,166 C420,150 460,128 480,114 C540,98 580,76 600,66 C660,52 700,42 720,40" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round"/>
+      <g id="nodes">
+        <g class="node" transform="translate(120,256)"><circle r="6" fill="#fff" stroke="#6B7547" stroke-width="2"/><text x="0" y="-12" text-anchor="middle" fill="#3F4828" font-size="11" font-weight="600">8</text></g>
+        <g class="node" transform="translate(240,222)"><circle r="6" fill="#fff" stroke="#6B7547" stroke-width="2"/><text x="0" y="-12" text-anchor="middle" fill="#3F4828" font-size="11" font-weight="600">18</text></g>
+        <g class="node" transform="translate(360,166)"><circle r="6" fill="#fff" stroke="#6B7547" stroke-width="2"/><text x="0" y="-12" text-anchor="middle" fill="#3F4828" font-size="11" font-weight="600">32</text></g>
+        <g class="node" transform="translate(480,114)"><circle r="6" fill="#fff" stroke="#6B7547" stroke-width="2"/><text x="0" y="-12" text-anchor="middle" fill="#3F4828" font-size="11" font-weight="600">42</text></g>
+        <g class="node" transform="translate(600,66)"><circle r="6" fill="#fff" stroke="#6B7547" stroke-width="2"/><text x="0" y="-12" text-anchor="middle" fill="#3F4828" font-size="11" font-weight="600">52</text></g>
+        <g class="node" transform="translate(720,40)"><circle r="7" fill="#3F4828" stroke="#fff" stroke-width="2"/><text x="0" y="-14" text-anchor="middle" fill="#3F4828" font-size="12" font-weight="700">60</text></g>
+      </g>
+    </svg>
+    <p class="muted" style="text-align:center;margin-top:6px;font-size:.84rem">Projected qualified leads / month · Months 1 → 6</p>
+  </div>
+</section>
+
+<!-- ============== TARGET AUDIENCE ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>14 · Audience</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Who we're talking to</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      A tightly defined target keeps creative sharp and ad costs efficient.
+    </p>
+  </div>
+
+  <div class="audience-grid">
+    <div class="card audience reveal" data-delay="1">
+      <div class="label">Age range</div>
+      <div class="value">28 – 50</div>
+      <p>Working professionals and established families investing in their first or forever home.</p>
+    </div>
+    <div class="card audience reveal" data-delay="2">
+      <div class="label">Location</div>
+      <div class="value">Chennai</div>
+      <p>City-wide with a 30 km performance radius. Premium localities prioritised in Phase 1.</p>
+    </div>
+    <div class="card audience reveal" data-delay="3">
+      <div class="label">Segment</div>
+      <div class="value">Premium</div>
+      <p>Homeowners, repeat builders and architects sourcing trusted execution partners.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="container">
+    <div class="brand-block">
+      <div class="brand">
+        <div class="brand-mark">TIQ</div>
+        <div>
+          <div style="font-family:var(--font-display);font-weight:600;color:var(--olive-800)">TIQ Interiors</div>
+          <div style="font-size:.7rem;color:var(--text-3);letter-spacing:.18em;text-transform:uppercase">Designed for how you live</div>
+        </div>
+      </div>
+      <p class="tag">Built with logic. Designed with feeling.</p>
+    </div>
+    <div class="meta">
+      <strong>Digital growth dashboard · Q2 2026</strong><br>
+      Replace assets in <code>/logo</code>, <code>/Mascot</code> and <code>/merch</code> folders to update grids automatically.
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+const LOGOS = [
+  "logo/logo-01.jpg",
+  "logo/logo-02.jpg",
+  "logo/logo-03.jpg",
+  "logo/logo-04.jpg",
+  "logo/logo-05.jpg",
+  "logo/logo-06.jpg",
+  "logo/logo-07.jpg",
+  "logo/logo-08.jpg",
+  "logo/logo-09.jpg",
+  "logo/logo-10.jpg",
+  "logo/logo-11.jpg"
+];
+
+const MASCOTS = [
+  "Mascot/mascot-01.png",
+  "Mascot/mascot-02.png",
+  "Mascot/mascot-03.png",
+  "Mascot/mascot-04.png",
+  "Mascot/mascot-05.png",
+  "Mascot/mascot-06.png"
+];
+
+const logoGrid = document.getElementById('logoGrid');
+LOGOS.forEach((src, i) => {
+  const el = document.createElement('div');
+  el.className = 'card asset reveal';
+  el.dataset.delay = String((i % 4) + 1);
+  el.innerHTML = `
+    <div class="badge">Concept ${String(i+1).padStart(2,'0')}</div>
+    <div class="frame"><img src="${src}" alt="TIQ Interiors logo concept ${i+1}" loading="lazy"
+      onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>
+  `;
+  logoGrid.appendChild(el);
+});
+
+const mascotGrid = document.getElementById('mascotGrid');
+MASCOTS.forEach((src, i) => {
+  const el = document.createElement('div');
+  el.className = 'card asset mascot reveal';
+  el.dataset.delay = String((i % 3) + 1);
+  el.innerHTML = `
+    <div class="badge progress">In Progress</div>
+    <div class="frame"><img src="${src}" alt="TIQ Interiors mascot direction ${i+1}" loading="lazy"
+      onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>
+  `;
+  mascotGrid.appendChild(el);
+});
+
+const track = document.getElementById('logoTrack');
+[...LOGOS, ...LOGOS].forEach(src => {
+  const img = document.createElement('img');
+  img.src = src; img.alt = "";
+  track.appendChild(img);
+});
+
+const bankGrid = document.getElementById('bankGrid');
+const bankLabels = ['R','C','S','R','LF','S','C','R','S','R','C','S','R','S','LF','C','R','S','R','C'];
+bankLabels.forEach((label, i) => {
+  const c = document.createElement('div');
+  c.className = 'bank-cell';
+  c.textContent = label;
+  c.title = `Asset ${i+1} · ${label === 'R' ? 'Reel' : label === 'C' ? 'Carousel' : label === 'S' ? 'Story/Short' : 'Long-form'}`;
+  bankGrid.appendChild(c);
+});
+
+const cdNum = document.getElementById('cdNum');
+if (cdNum) {
+  const launch = new Date('2026-05-15T00:00:00');
+  const today  = new Date();
+  const days   = Math.max(0, Math.ceil((launch - today) / 86400000));
+  cdNum.textContent = days;
+}
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+      e.target.querySelectorAll('[data-count]').forEach(animateCount);
+      e.target.querySelectorAll('[data-fill]').forEach(el => {
+        const v = el.dataset.fill;
+        requestAnimationFrame(() => { el.style.width = v + '%'; });
+      });
+    }
+  });
+}, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+function animateCount(el){
+  if (el.dataset.done) return;
+  el.dataset.done = '1';
+  const target = parseFloat(el.dataset.count);
+  const dur = 1300;
+  const start = performance.now();
+  function tick(now){
+    const t = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const v = Math.round(target * eased);
+    el.textContent = v.toLocaleString();
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+const linePath = document.getElementById('linePath');
+const areaPath = document.getElementById('areaPath');
+const nodes = document.querySelectorAll('#nodes .node');
+if (linePath) {
+  const len = linePath.getTotalLength();
+  linePath.style.strokeDasharray = len;
+  linePath.style.strokeDashoffset = len;
+
+  const chartIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        linePath.animate(
+          [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+          { duration: 1800, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' }
+        );
+        areaPath.animate(
+          [{ opacity: 0 }, { opacity: 1 }],
+          { duration: 1200, delay: 800, easing: 'ease-out', fill: 'forwards' }
+        );
+        nodes.forEach((n, i) => {
+          n.style.opacity = '0';
+          n.animate(
+            [{ opacity: 0, transform: n.getAttribute('transform') + ' scale(.4)' },
+             { opacity: 1, transform: n.getAttribute('transform') + ' scale(1)' }],
+            { duration: 600, delay: 600 + i * 180, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' }
+          );
+        });
+        chartIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: .3 });
+  chartIO.observe(document.getElementById('growthChart'));
+}
+
+const heroPanel = document.querySelector('.hero-panel');
+if (heroPanel) {
+  document.addEventListener('mousemove', (e) => {
+    const r = heroPanel.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    const dx = (e.clientX - cx) / r.width;
+    const dy = (e.clientY - cy) / r.height;
+    heroPanel.style.transform = `perspective(1200px) rotateX(${(-dy*2).toFixed(2)}deg) rotateY(${(dx*2).toFixed(2)}deg)`;
+  });
+  heroPanel.style.transition = 'transform .25s ease-out';
+}
+</script>
+
+</body>
+</html>
