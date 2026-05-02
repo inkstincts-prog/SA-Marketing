@@ -623,6 +623,79 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
   background:linear-gradient(90deg,transparent,var(--olive-300),transparent);
 }
 
+/* ---------- CUSTOM CURSOR ---------- */
+*{cursor:none!important}
+#cur-dot,#cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+#cur-dot{width:8px;height:8px;background:var(--olive-700);transition:width .15s,height .15s,background .15s,opacity .2s}
+#cur-ring{width:36px;height:36px;border:2px solid var(--olive-500);opacity:.5;transition:width .35s cubic-bezier(.2,.7,.2,1),height .35s cubic-bezier(.2,.7,.2,1),opacity .35s,border-color .25s,border-radius .3s}
+body.cur-hover #cur-dot{width:6px;height:6px;background:var(--tan)}
+body.cur-hover #cur-ring{width:52px;height:52px;opacity:.7;border-color:var(--tan)}
+body.cur-click #cur-dot{width:4px;height:4px;opacity:.7}
+body.cur-click #cur-ring{width:24px;height:24px;opacity:.9}
+body.cur-toggle #cur-ring{border-radius:8px;width:46px;height:46px;border-color:var(--olive-600)}
+
+/* ---------- START-SLOW CARDS ---------- */
+.slow-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+@media(max-width:680px){.slow-grid{grid-template-columns:1fr}}
+.slow-card{padding:26px;position:relative;overflow:hidden}
+.slow-card::before{content:"";position:absolute;inset:0;opacity:.04;background:radial-gradient(circle at 80% 20%,var(--olive-500),transparent 60%)}
+.slow-card .tier{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;font-family:var(--font-body);margin-bottom:10px}
+.slow-card .tier.start{color:var(--tan)}
+.slow-card .tier.scale{color:var(--olive-500)}
+.slow-card .big-lead{font-family:var(--font-display);font-size:2.8rem;font-weight:500;line-height:1;color:var(--olive-800);margin:6px 0 4px}
+.slow-card .cpl{font-size:.84rem;color:var(--text-2);margin-bottom:14px}
+.slow-kpi{display:grid;gap:8px;margin-top:10px}
+.slow-kpi-row{display:flex;justify-content:space-between;align-items:center;font-size:.84rem;padding:8px 10px;border-radius:var(--radius-sm);background:var(--olive-50);border:1px solid var(--line)}
+.slow-kpi-row .sk{color:var(--text-3);font-weight:600;letter-spacing:.04em}
+.slow-kpi-row .sv{color:var(--text-1);font-weight:600}
+.slow-arrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:.8rem;color:var(--olive-600);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.slow-arrow svg{width:18px;height:18px}
+
+/* ---------- META TOGGLES ---------- */
+.meta-toggles{display:grid;gap:12px;margin-top:24px}
+.toggle-item{border-radius:var(--radius-lg);background:#fff;border:1px solid var(--line);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.toggle-item:hover{border-color:var(--olive-300);box-shadow:var(--shadow-soft)}
+.toggle-item.open{border-color:var(--olive-400);box-shadow:var(--shadow-lift)}
+.toggle-head{
+  display:flex;align-items:center;gap:14px;padding:20px 22px;
+  cursor:none!important;user-select:none;
+  transition:background .2s;
+}
+.toggle-head:active{background:var(--olive-50)}
+.toggle-ico{
+  width:40px;height:40px;border-radius:10px;flex:0 0 auto;
+  background:var(--olive-50);border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--olive-700);font-size:18px;
+  transition:background .25s,color .25s;
+}
+.toggle-item.open .toggle-ico{background:var(--olive-700);color:#fff;border-color:var(--olive-800)}
+.toggle-title{flex:1}
+.toggle-title strong{font-family:var(--font-display);font-size:1.05rem;font-weight:600;color:var(--olive-800);display:block}
+.toggle-title span{font-size:.8rem;color:var(--text-3)}
+.toggle-arrow{
+  width:30px;height:30px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;color:var(--text-3);flex:0 0 auto;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),background .25s,border-color .25s;
+}
+.toggle-item.open .toggle-arrow{transform:rotate(180deg);background:var(--olive-700);border-color:var(--olive-700);color:#fff}
+.toggle-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.toggle-item.open .toggle-body{max-height:800px}
+.toggle-inner{padding:0 22px 22px;border-top:1px dashed var(--line)}
+.toggle-inner p{color:var(--text-2);font-size:.92rem;margin:14px 0 10px;line-height:1.65}
+.tchecks{list-style:none;padding:0;margin:0;display:grid;gap:7px}
+.tchecks li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--text-1);padding:9px 12px;border-radius:var(--radius-sm);background:var(--olive-50);border:1px solid var(--line)}
+.tchecks .tbox{width:20px;height:20px;border-radius:5px;flex:0 0 auto;margin-top:1px;background:var(--olive-600);display:grid;place-items:center}
+.tchecks .tbox svg{width:11px;height:11px;stroke:#fff;fill:none}
+.tsteps{list-style:none;padding:0;margin:0;display:grid;gap:10px;counter-reset:step}
+.tsteps li{display:flex;align-items:flex-start;gap:12px;font-size:.88rem;color:var(--text-1);counter-increment:step}
+.tsteps li::before{content:counter(step);min-width:26px;height:26px;border-radius:8px;background:var(--olive-700);color:#fff;font-weight:700;font-size:.75rem;display:grid;place-items:center;flex:0 0 auto;margin-top:1px}
+.meta-note{
+  margin-top:16px;padding:14px 16px;border-radius:var(--radius-md);
+  background:linear-gradient(135deg,var(--olive-50),#fff);
+  border:1px solid var(--olive-200);
+  font-size:.85rem;color:var(--olive-700);font-weight:500;
+}
+
 ::selection{background:var(--olive-200);color:var(--olive-900)}
 
 ::-webkit-scrollbar{width:10px;height:10px}
@@ -662,6 +735,10 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
 </head>
 
 <body>
+
+<!-- Custom cursor elements -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
 
 <!-- ============== NAV ============== -->
 <header class="nav">
@@ -1386,6 +1463,183 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
   </div>
 </section>
 
+<!-- ============== START SLOW → SCALE ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>11b · Start Slow</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Start at ₹5K, scale when it works</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      No need to commit big upfront. Start with a test budget, see real leads come in, then scale confidently.
+    </p>
+  </div>
+
+  <div class="slow-grid">
+    <!-- Tier 1 -->
+    <div class="card slow-card reveal" data-delay="1">
+      <div class="tier start">🌱 Starter — Month 1</div>
+      <div class="big-lead">12–30</div>
+      <div class="cpl">leads expected · CPL ₹170–₹400</div>
+      <div class="slow-kpi">
+        <div class="slow-kpi-row"><span class="sk">Ad Spend</span><span class="sv">₹5,000</span></div>
+        <div class="slow-kpi-row"><span class="sk">Reach</span><span class="sv">25K – 50K people</span></div>
+        <div class="slow-kpi-row"><span class="sk">Impressions</span><span class="sv">40K – 75K</span></div>
+        <div class="slow-kpi-row"><span class="sk">Profile Visits</span><span class="sv">500 – 1,200</span></div>
+        <div class="slow-kpi-row"><span class="sk">Engagement</span><span class="sv">2% – 4%</span></div>
+        <div class="slow-kpi-row"><span class="sk">Cost Per Lead</span><span class="sv">₹170 – ₹400</span></div>
+      </div>
+      <div class="meta-note" style="margin-top:14px">Goal: test the creative, confirm targeting, collect first real leads before scaling.</div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="card slow-card reveal" data-delay="2">
+      <div class="tier scale">🚀 Scale — Month 2 onwards</div>
+      <div class="big-lead">30–60</div>
+      <div class="cpl">leads expected · CPL ₹400–₹650</div>
+      <div class="slow-kpi">
+        <div class="slow-kpi-row"><span class="sk">Ad Spend</span><span class="sv">₹20,000</span></div>
+        <div class="slow-kpi-row"><span class="sk">Reach</span><span class="sv">80K – 1,50,000 people</span></div>
+        <div class="slow-kpi-row"><span class="sk">Impressions</span><span class="sv">1.2L – 2.5L</span></div>
+        <div class="slow-kpi-row"><span class="sk">Profile Visits</span><span class="sv">2,000 – 5,000</span></div>
+        <div class="slow-kpi-row"><span class="sk">Engagement</span><span class="sv">3% – 6%</span></div>
+        <div class="slow-kpi-row"><span class="sk">Cost Per Lead</span><span class="sv">₹150 – ₹320</span></div>
+      </div>
+      <div class="meta-note" style="margin-top:14px">CPL drops in Month 2+ as Meta learns your audience. More budget = better data = lower cost per lead.</div>
+    </div>
+  </div>
+
+  <div class="slow-arrow reveal" data-delay="3">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    We only move to scale once Month 1 data confirms the campaign is working
+  </div>
+</section>
+
+<!-- ============== META ADS GUIDE ============== -->
+<section class="section container">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow reveal"><span class="dot"></span>11c · Meta Ads</span>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Why Meta Ads — and how to run them</h2>
+    </div>
+    <p class="lead reveal" data-delay="2">
+      Click any section to expand. Everything your client needs to know, in plain language.
+    </p>
+  </div>
+
+  <div class="meta-toggles reveal" data-delay="1">
+
+    <!-- Toggle 1 -->
+    <div class="toggle-item" data-toggle>
+      <div class="toggle-head">
+        <div class="toggle-ico">📣</div>
+        <div class="toggle-title">
+          <strong>Why Meta Ads are non-negotiable right now</strong>
+          <span>The single fastest way to reach qualified buyers in your city</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="toggle-body">
+        <div class="toggle-inner">
+          <p>Organic content builds trust over time — but Meta Ads put you in front of the right people right now. In Chennai's premium segment, your potential customer is on Instagram daily. Meta lets you reach them by age, location, income signals, and interest — with surgical precision.</p>
+          <ul class="tchecks">
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span>Only platform where you can target homeowners + premium interest in one campaign</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span>Lead Forms collect contact details without taking users off the app — lower friction = more leads</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span>Results are measurable — you know exactly how much each lead cost</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span>Campaigns can be paused, scaled or redirected in 24 hours</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span>Organic reach on Instagram is ~3–5%. Ads extend that reach 10–30x</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle 2 -->
+    <div class="toggle-item" data-toggle>
+      <div class="toggle-head">
+        <div class="toggle-ico">📋</div>
+        <div class="toggle-title">
+          <strong>What you need before running ads</strong>
+          <span>This checklist takes 1–2 days to complete — we help with all of it</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="toggle-body">
+        <div class="toggle-inner">
+          <p>Before the first ad goes live, a few things need to be in place. Most of these are one-time setups:</p>
+          <ul class="tchecks">
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>Meta Business Account</strong> — free to create, links your Facebook page + Instagram</div></li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>Ads Manager access</strong> — we manage this on your behalf once access is granted</div></li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>Payment method on file</strong> — card or UPI linked to the Ads Manager account</div></li>
+                        <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>1–2 creatives ready</strong> — a short video or a clean image with your project / product</div></li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>Lead form questions agreed</strong> — typically: name, phone, and “what kind of space?” (3 fields max)</div></li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><div><strong>WhatsApp or CRM to receive leads</strong> — leads delivered instantly to your inbox</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle 3 -->
+    <div class="toggle-item" data-toggle>
+      <div class="toggle-head">
+        <div class="toggle-ico">⚙️</div>
+        <div class="toggle-title">
+          <strong>The process — how it works end to end</strong>
+          <span>From setup to your first lead arriving in your inbox</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="toggle-body">
+        <div class="toggle-inner">
+          <p>Here’s exactly how the whole thing works, in order:</p>
+          <ol class="tsteps">
+            <li><div><strong>Account Setup (Day 1)</strong> — Meta Business Manager created, Instagram + Facebook linked, ad account verified with payment method.</div></li>
+            <li><div><strong>Creative Brief (Day 1–2)</strong> — We finalise the ad creative: 1 short video reel + 1 static image. Simple, clean, and relevant to your target customer.</div></li>
+            <li><div><strong>Lead Form Built (Day 2)</strong> — We create the Lead Form inside Ads Manager. 3 questions max. Auto-filled name + phone for easy submission.</div></li>
+            <li><div><strong>Audience Targeting Set (Day 2)</strong> — Location: Chennai 30km. Age: 28–50. Interests: home interiors, premium lifestyle, new construction.</div></li>
+            <li><div><strong>Campaign Goes Live (Day 3)</strong> — Ad starts running. You’ll see reach data within 24 hours and first leads within 2–4 days typically.</div></li>
+            <li><div><strong>Weekly Optimisation</strong> — We check performance every 7 days. Pause underperforming ads, increase budget on winners, refresh creative if needed.</div></li>
+            <li><div><strong>Monthly Report</strong> — You receive a clear report: how much spent, how many leads, cost per lead, and recommendations for next month.</div></li>
+          </ol>
+          <div class="meta-note">💡 The first 7–10 days are the “learning phase” — Meta is finding your best audience. Don’t panic if leads are slow at first. It improves significantly after that.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toggle 4 -->
+    <div class="toggle-item" data-toggle>
+      <div class="toggle-head">
+        <div class="toggle-ico">📈</div>
+        <div class="toggle-title">
+          <strong>How we scale — the decision framework</strong>
+          <span>We never increase budget blindly. Here’s how scaling decisions are made</span>
+        </div>
+        <div class="toggle-arrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="toggle-body">
+        <div class="toggle-inner">
+          <p>We follow a simple rule: if the data says yes, we scale. If not, we fix first.</p>
+          <ul class="tchecks">
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><strong>Green signal to scale:</strong> CPL is within target range + at least 5 leads received in Month 1</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><strong>Scale rule:</strong> Increase budget by max 20–30% per week — not all at once (Meta resets its learning)</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><strong>Red flag:</strong> If CPL is too high, we change the creative first — not the budget</li>
+            <li><span class="tbox"><svg viewBox="0 0 12 10" stroke-width="2"><polyline points="1,5 4.5,8.5 11,1"/></svg></span><strong>Budget flexibility:</strong> ₹5K → ₹10K → ₹20K — each step only after the previous is profitable</li>
+          </ul>
+          <div class="meta-note">🎯 “We will always start with a small test budget and scale based on performance — never the other way around.”</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ============== BUDGET ============== -->
 <section class="section container">
   <div class="section-head">
@@ -1414,7 +1668,6 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
       <div class="budget-track"><div class="budget-fill" data-fill="42.5"></div></div>
       <div class="amt">₹8,500</div>
     </div>
-
     <div class="budget-total">
       <span class="label">Total monthly investment</span>
       <span class="total">₹35,000</span>
@@ -1434,7 +1687,6 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
       Months 1–2 are foundation, Month 3 onward compounds.
     </p>
   </div>
-
   <div class="card growth-card reveal">
     <svg viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" id="growthChart">
       <defs>
@@ -1487,13 +1739,12 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
   <div class="section-head">
     <div>
       <span class="eyebrow reveal"><span class="dot"></span>14 · Audience</span>
-      <h2 class="reveal" data-delay="1" style="margin-top:14px">Who we're talking to</h2>
+      <h2 class="reveal" data-delay="1" style="margin-top:14px">Who we’re talking to</h2>
     </div>
     <p class="lead reveal" data-delay="2">
       A tightly defined target keeps creative sharp and ad costs efficient.
     </p>
   </div>
-
   <div class="audience-grid">
     <div class="card audience reveal" data-delay="1">
       <div class="label">Age range</div>
@@ -1528,7 +1779,7 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
     </div>
     <div class="meta">
       <strong>Digital growth dashboard · Q2 2026</strong><br>
-      Replace assets in <code>/logo</code>, <code>/Mascot</code> and <code>/merch</code> folders to update grids automatically.
+      Replace assets in <code>/logo</code>, <code>/mascot</code> and <code>/merch</code> folders to update grids automatically.
     </div>
   </div>
 </footer>
@@ -1537,26 +1788,13 @@ footer code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--olive-
 
 <script>
 const LOGOS = [
-  "logo/logo-01.jpg",
-  "logo/logo-02.jpg",
-  "logo/logo-03.jpg",
-  "logo/logo-04.jpg",
-  "logo/logo-05.jpg",
-  "logo/logo-06.jpg",
-  "logo/logo-07.jpg",
-  "logo/logo-08.jpg",
-  "logo/logo-09.jpg",
-  "logo/logo-10.jpg",
-  "logo/logo-11.jpg"
+  "logo/logo-01.jpg","logo/logo-02.jpg","logo/logo-03.jpg","logo/logo-04.jpg",
+  "logo/logo-05.jpg","logo/logo-06.jpg","logo/logo-07.jpg","logo/logo-08.jpg",
+  "logo/logo-09.jpg","logo/logo-10.jpg","logo/logo-11.jpg"
 ];
-
 const MASCOTS = [
-  "Mascot/mascot-01.png",
-  "Mascot/mascot-02.png",
-  "Mascot/mascot-03.png",
-  "Mascot/mascot-04.png",
-  "Mascot/mascot-05.png",
-  "Mascot/mascot-06.png"
+  "mascot/mascot-01.png","mascot/mascot-02.png","mascot/mascot-03.png",
+  "mascot/mascot-04.png","mascot/mascot-05.png","mascot/mascot-06.png"
 ];
 
 const logoGrid = document.getElementById('logoGrid');
@@ -1564,11 +1802,7 @@ LOGOS.forEach((src, i) => {
   const el = document.createElement('div');
   el.className = 'card asset reveal';
   el.dataset.delay = String((i % 4) + 1);
-  el.innerHTML = `
-    <div class="badge">Concept ${String(i+1).padStart(2,'0')}</div>
-    <div class="frame"><img src="${src}" alt="TIQ Interiors logo concept ${i+1}" loading="lazy"
-      onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>
-  `;
+  el.innerHTML = `<div class="badge">Concept ${String(i+1).padStart(2,'0')}</div><div class="frame"><img src="${src}" alt="TIQ Interiors logo concept ${i+1}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>`;
   logoGrid.appendChild(el);
 });
 
@@ -1577,11 +1811,7 @@ MASCOTS.forEach((src, i) => {
   const el = document.createElement('div');
   el.className = 'card asset mascot reveal';
   el.dataset.delay = String((i % 3) + 1);
-  el.innerHTML = `
-    <div class="badge progress">In Progress</div>
-    <div class="frame"><img src="${src}" alt="TIQ Interiors mascot direction ${i+1}" loading="lazy"
-      onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>
-  `;
+  el.innerHTML = `<div class="badge progress">In Progress</div><div class="frame"><img src="${src}" alt="TIQ Interiors mascot direction ${i+1}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div style=&quot;padding:20px;text-align:center;color:#8A8F7B;font-size:.78rem&quot;>Image not found:<br><b>${src}</b></div>'"></div>`;
   mascotGrid.appendChild(el);
 });
 
@@ -1649,25 +1879,14 @@ if (linePath) {
   const len = linePath.getTotalLength();
   linePath.style.strokeDasharray = len;
   linePath.style.strokeDashoffset = len;
-
   const chartIO = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        linePath.animate(
-          [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
-          { duration: 1800, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' }
-        );
-        areaPath.animate(
-          [{ opacity: 0 }, { opacity: 1 }],
-          { duration: 1200, delay: 800, easing: 'ease-out', fill: 'forwards' }
-        );
+        linePath.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }],{ duration: 1800, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
+        areaPath.animate([{ opacity: 0 }, { opacity: 1 }],{ duration: 1200, delay: 800, easing: 'ease-out', fill: 'forwards' });
         nodes.forEach((n, i) => {
           n.style.opacity = '0';
-          n.animate(
-            [{ opacity: 0, transform: n.getAttribute('transform') + ' scale(.4)' },
-             { opacity: 1, transform: n.getAttribute('transform') + ' scale(1)' }],
-            { duration: 600, delay: 600 + i * 180, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' }
-          );
+          n.animate([{ opacity: 0, transform: n.getAttribute('transform') + ' scale(.4)' },{ opacity: 1, transform: n.getAttribute('transform') + ' scale(1)' }],{ duration: 600, delay: 600 + i * 180, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
         });
         chartIO.unobserve(e.target);
       }
@@ -1675,6 +1894,34 @@ if (linePath) {
   }, { threshold: .3 });
   chartIO.observe(document.getElementById('growthChart'));
 }
+
+/* ── Custom Cursor ── */
+const cursorDot  = document.getElementById('cur-dot');
+const cursorRing = document.getElementById('cur-ring');
+let ringX = 0, ringY = 0, dotX = 0, dotY = 0;
+function moveCursor(e){ dotX = e.clientX; dotY = e.clientY; cursorDot.style.transform = `translate(calc(${dotX}px - 50%), calc(${dotY}px - 50%))`; }
+function animRing(){ ringX += (dotX - ringX) * 0.14; ringY += (dotY - ringY) * 0.14; cursorRing.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%))`; requestAnimationFrame(animRing); }
+document.addEventListener('mousemove', moveCursor);
+animRing();
+document.querySelectorAll('a,button,.cta,.toggle-head,.card,.bank-cell').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cur-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cur-hover'));
+});
+document.querySelectorAll('.toggle-head').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cur-toggle'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cur-toggle'));
+});
+document.addEventListener('mousedown', () => document.body.classList.add('cur-click'));
+document.addEventListener('mouseup',   () => document.body.classList.remove('cur-click'));
+
+/* ── Toggle Accordion ── */
+document.querySelectorAll('[data-toggle]').forEach(item => {
+  item.querySelector('.toggle-head').addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('[data-toggle].open').forEach(o => o.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
 
 const heroPanel = document.querySelector('.hero-panel');
 if (heroPanel) {
